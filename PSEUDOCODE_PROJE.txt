@@ -1,0 +1,280 @@
+1. Basla
+2. Bitcoin struct yapısında tanımla
+3.	int fiyat
+4.	string ay
+5.	Bitcoin veri türünde next işaretcisi tanımla
+6. struct yapısından çık
+7.
+8. Etherium struct yapısında tanımla
+9.	int fiyatEth 
+10.     string ayEth
+11.     Etherium veri türünde next işaretcisi tanımla 
+12. struct yapısından çık
+13.
+14. struct MainStruct yapısını tanımla
+15. 	Bitcoin veri türünde head işaretcisi tanımla	
+16.	Bitcoin veri türünde tail işaretcisi tanımla
+17.	Etherium veri türünde bas işaretcisi tanımla
+18.	Etherium veri türünde kuyruk işaretcisi tanımla
+19.
+20.	MainStruct fonsiyonun içinde atama işlemlerini yap
+21.		head'e NULL ata
+22.		tail'e NULL ata 
+23.		bas'a NULL ata 
+24.		kuyruk'a NULL ata
+25.	fonsiyondan çık
+26.
+27.	string türünde aylar dizisi tanımla ve aylar dizisine atama yap
+28.		{"Ocak","Subat", "Mart", "Nisan", "Mayis", "Haziran", "Temmuz", "Agustos", "Eylul", "Ekim", "Kasim"}
+29.
+30.     int türünde fiyatlar dizisi tanımla ve fiyatlar dizisine atama yap 
+31.		{58824,37000,38729, 41147, 30033, 22097, 20323, 24320, 20177, 19206, 20826}
+32.
+33.	int türünde fiyatlarEth dizisi tanımla ve fiyatlarEth dizisine atama yap 
+34.		{3893,3267,2976, 3041, 1950, 1237, 1725, 1879, 1554, 1285, 1614}
+35.
+37.	Void tipinde 'ElemanEkleMevcut(Bitcoin veri türünde ListeElemanlari işaretcisini tanımla )' fonksiyonunu oluştur
+38.		if(head NULL'a e eşit ise)
+39.			head'e ListeElemanları ata
+40.		if döngüden çık
+41.		else
+42.	        	tail'in next elemanına ListeElemanları'nı ata
+43.		else döngüden çık
+44.		tail'e ListeElemanlari ata
+45. 	fonsiyondan çık
+46.
+47.	void tipinde 'Karsilastir(Bitcoin veri türünde btc işaretcisini tanımla)' fonsiyonunu oluştur 
+48.		Bitcoin veri türünde btc işaretcisini tanımla ve head'i ata
+49.		Bitcoin veri türünde ptr işaretcisini tanımla ve btc'nin next elamanına ata
+50.	        int türünde sayac tanımla ve sıfır ata
+51.	        while(btc'nin next elemanı NULL'a eşit değilse)
+52.     		while(ptr NULL'a eşit değilse)
+53.				if(btc'nin fiyat elemanı büyükse ptr fiyat elemanına ve btc'nin fiyat elemanı büyükse ptr next'in fiyat'nın elemanına)
+54.					sayac'ı sayac+2 ye ata 
+55.				if döngüsünden çık
+56.				ptr'nin next elemanına ptr ata
+57.				ekrana yazdır, btc'nin ay'ına"'dan onceki aylar icin ardisik ay sayisi: "sayac değerini yaz, alt satıra geç
+58.				sayac'ı sıfıra ata
+59.				btc'yi btc'nin next elemanına ata
+60.			while döngüsünden çık
+61.		while döngüsünden çık		
+62.	fonksiyondan çık
+63.
+64.	void tipinde 'ElemanListele()' fonksiyonunu oluştur
+65.		Bitcoin veri türüne btc işaretcisini tanımla ve head'e atama işlemini yap
+66.		ekrana yazdır "\n--------2022 YILININN BITCOIN LISTESI-------\n" alt satıra geç		
+68.		while(btc den next elemanı NULL'a eşit olmadığı sürece)
+69.			ekrana yazdır, "Bir bitcoin " btc nin ay değeri " ayında: " btc nin fiyat değeri "$ \n"
+70.			btc'yi bct'nin next ata
+71.		while döngüden çık
+72.	fonksiondan çık
+73.
+74.	void tipinde 'TersCevir()' fonksiyonunu oluştur
+75.		Bitcoin veri türüne current işaretcisini tanımla ve head ata
+76.		Bitcoin veri türüne prev işaretcisini tanımla ve NULL'a ata, veri türünü next işaretcisini tanımla ve NULL'a ata
+77.		while(current eşit değilse NULL'a)
+78.			next'ı current next'ine ata
+79.			current'ın next elemanına prev ata
+80.                     current'tı prev ata
+81.			current'ti next ata
+82.		while döngüden çık
+83.		head'e prev ata
+84.	fonsiyondan çık
+85.
+86.	void tipinde 'KarsilastirEth()' fonksiyonunu oluştur
+87.		    Etherium veri türüne eth işaretcisini tanımla ve bas ata
+88.		    Etherium veri türüne ptr işaretcisini tanımla ve eth'in next'ine ata
+89.		    int türünde sayac tanımla ve sıfıra ata
+90.		    while(eth'nin next elemanı NULL'a eşit değilse)
+91.			    while(ptr NULL'a eşit değilse)
+92.				    if(eth'nin fiyatEth büyükse ptr fiyatEth elemanına ve eth'nin fiyatEth'ı elemanı büyükse ptr'nin next'in fiyatEth'in elemanına)
+93.                     	    	sayac'ı sayac+2 ye ata 
+94.			    	    if döngüsünden çık
+95.				    ptr'nin next elemanına ptr ata
+96.				    ekrana yazdır, eth'nin ayEth elemanına "'dan onceki aylar icin ardisik ay sayisi: "sayac değerini yaz, alt satıra geç
+97.				    sayac'ı sıfıra ata
+98.				    eth'yi eth'nin next elemanına ata
+99.			    while döngüsünden çık
+100.		    while döngüsünden çık		
+101.	 fonksiyondan çık
+102.
+103.     void tipinde 'ElemanEkleMevcut(Etherium veri türüne ListeElemanlari işaretcisini tanımla)' fonksiyonunu oluştur
+104.		if(bas eşit ise NULL'a)
+105.			    bas'a ListeElemanlari ata
+106.		if döngüden çık
+107.		else 
+108.			    kuyruk next elemanına ListeElemanlari ata
+109.		else döngüden çık
+110.		kuyruk'a ListeElemanlari ata
+111.	  fonksiyondan çık
+112.
+113. 	  void tipinde ElemanListeleEth() fonksiyon tanımla
+114.		    Etherium veri türüne eth işaretcisni tanımla ve bas ata
+115.		    ekrana yazdır"\n--------2022 YILININN ETHERIUM LISTESI-------\n" alt satıra geç
+117.		    while(eth'ten next ' eleman NULL'a eşit değilse)
+118.			    ekrana yazdır, "Bir etherium " eth nin ayEth elemanına " ayında: " eth nin fiyatEth değeri "$ \n"
+119.			    eth eth'in next 'ne ata
+120.		    while döngüden çık
+121.	   fonksiyondan çık
+122. struct yapısından çık
+123. 
+124. int main() fonksiyonunu tanımla
+125.	MainStruct struct yapısını ms olarak tanımla
+126.	Bitcoin veri türünde btc işaretcisini tanımla
+127.	Etherium veri türünde eth işaretcisini tanımla
+128.	int türünde vote, vote_in, repeat tanımla ve repeat'a 1 ata
+130.	ms struct içindeki TersCevir fonsiyonunu çağır
+131.	while(repeat eşit ise 1'e)
+132.		int türünde repeat_in tanımla ve 1 ata
+133.		ekrana yazdır "********** HOSGELDINIZ **********\n"
+134.	    	ekrana yazdır "Lutfen islem yapmak istediginiz coini secin\n" 
+135.	    	ekrana yazdır "[1] - Bitcoin\n"
+136.	        ekrana yazdır "[2] - Etherium\n"
+137.	    	ekrana yazdır "[3] - Cikis yap\n"
+138.	    	ekrana yazdır "Seciminiz: "
+139.	    	cin komutu ile secilen işlem vote verisi okunuyor
+140.		while(repeat_in eşit ise 1'e)
+141.			if(vote eşit ise 1'e)
+142.		        	ekrana yazdır "\n********* BITCOIN **********\n\n"
+143.				krana yazdır "Yilin ilk 11 ayinin fiyatini listele [1]\n"
+144.				ekrana yazdır "Fiyatlari istedigin aya gore kiyasla [2]\n"
+145.		    		ekrana yazdır "Ust menuye git [3]\n"
+146.       	        	ekrana yazdır "Seciminiz: "
+147.        			cin komutu ile secilen işlem vote_in verisi okunuyor
+148.		        	if(vote_in eşit ise 1'e)
+149.                    		if(ms struct içinde head'i çağır ve NULL ata)
+150.						for(int türünde j tanımla ve 11 ata; j büyük ise 2'dan; j'yi azalt )
+151.		        				Bitcoin'den yer alma işlemini yapıp btc'ye ata
+152.				    			btc'nin ay elemanına ms struct içindeki aylar j'inci elemanına ata 
+153.				    			btc'nin fiyat elemanına ms struct içindeki fiyatlar j'inci elemanına ata
+154.					    		ms struct içindeki ElemanEkleMevcut(btc) fonsiyonunu çağır
+155.							btc'nin next elemanına btc ata
+156.						 for döngüsünden çık
+157.                      		if döngüsünden çık
+158.		          		btc'nin next elemanına NULL ata				
+159.					ms struct içindeki TersCevir() fonsiyonunu çağır 
+160.	        	 		ms struct içindeki ElemanListele() fonsiyonunu çağır
+161.			 	 if döngüsünden çık
+162.
+163.			  	 else if(vote_in eşit ise 2'e)
+164.				 	for(int türünde j tanımla ve 10 ata; j büyük ise 2'dan; j'yi azalt )
+165.			    			Bitcoin'den yer alma işlemini yapıp btc'ye ata
+166.				    		btc'nin ay elemanına ms struct içindeki aylar'ı j'inci elemanına ata 
+167.					    	btc'nin fiyat elemanına ms struct içindeki fiyatlar' j'inci elemanına ata
+168.					    	ms struct içindeki ElemanEkleMevcut(btc) fonsiyonunu at
+169.					    	btc'nin next elemanına btc ata
+170.				    	for döngüsünden çık
+171.	  	    			btc'nin next elemanına NULL ata
+172 	    				ms struct içindeki Karsilastir(btc) fonsiyonunu çağır
+173.		    	    	else if döngüsünden çık
+174.				
+175.		        	else if(vote_in eşit ise 3'e)
+176.                        		ekranı temizlemek için kullanılan fonsiyon 
+177.			        	repeat_in'i sıfıra ata 
+178.			       	else if döngüsünden çık
+179.				
+180.				else 
+181.					ekrana yazdır "Yanlis secim yaptiniz!! Tekrar secim yapin: "
+182.					cin komutu ile secilen işlem vote_in verisi okunuyor
+183.                    	else döngüsünden çık
+184.			if döngüsünden çık
+185.			
+186.			else if(vote eşit ise 2'ye)
+187.				ekrana yazdır "\n********* ETHERIUM **********\n\n"
+188.				ekrana yazdır "Yilin ilk 11 ayinin fiyatini listele [1]\n"
+189.				ekrana yazdır "Fiyatlari istedigin aya gore kiyasla [2]\n"
+190.				ekrana yazdır "Ust menuye git [3]\n"
+191.				ekrana yazdır "Seciminiz: "
+192.				cin komutu ile secilen işlem vote_in verisi okunuyor
+193.				if(vote_in eşit ise 1'e)
+194.                    		if(ms struct içinde bas'ı çağır ve NULL ata)
+195.						for(int türünde j tanımla ve 10 ata; j büyük ise 2'dan; j'yi azalt )
+196.							Etherium'den yer alma işlemini yapıp eth'ye ata
+197.							eth'nin ayEth elemanına ms struct içindeki aylar j'inci elemanına ata 
+198.							eth'nin fiyatEth elemanına ms struct içindeki fiyatlarEth j'inci elemanına ata
+191.							ms struct içindeki ElemanEkleMevcut(eth) fonsiyonunu at
+200.							eth'nin next elemanına eth ata
+201.						for döngüsünden çık
+202.						eth'nin next elemanına NULL ata				
+203.						ms struct içindeki TersCevir() fonsiyonunu çağır 
+204.						ms struct içindeki ElemanListele() fonsiyonunu çağır
+205.					if döngüsünden çık
+206.			else if(vote_in eşit ise 2'e)
+207.                 		if(ms struct içinde bas'ı çağır ve NULL ata)
+208.					for(int türünde j tanımla ve 10 ata; j büyük ise 2'dan; j'yi azalt )
+209.						Etherium'den yer alma işlemini yapıp eth'ye ata
+210.						eth'nin ayEth elemanına ms struct içindeki aylar j'inci elemanına ata 
+211.						eth'nin fiyatEth elemanına ms struct içindeki fiyatEth'lar j'inci elemanına ata
+212.						ms struct içindeki ElemanEkleMevcut(eth) fonsiyonunu at
+213.						eth'nin next elemanına eth ata
+214.					for döngüsünden çık
+215.				if döngüsünden çık
+215.				eth'nin next elemanına NULL ata
+216.				ms struct içindeki Karsilastir() fonsiyonunu çağır
+217.			else if döngüsünden çık
+218.				
+219.			else if(vote_in eşit ise 3'e)
+220.                		ekranı temizlemek için kullanılan fonsiyon
+221.				repeat_in'i sıfıra ata 
+223.			else ifdöngüsünden çık
+224.				
+225.			else 
+226.				ekrana yazdır "Yanlis secim yaptiniz!! Tekrar secim yapin: "
+227.				cin komutu ile secilen işlem vote_in verisi okunuyor
+228.			else döngüsünden çık
+229.		else if döngüsünden çık
+231.	
+230.		else if(vote eşit ise 3'e)
+231.			repeat'i sıfıra ata
+232.			repeat_in'i sıfıra ata
+233.            ekrana yazdır "IYI GUNLER DİLERİZ :)"
+234.		else if döngüsünden çık
+235.			
+236.		else
+237.			ekrana yazdır "Yanlis secim yaptiniz!! Tekrar secim yapin: "
+238.			cin komutu ile secilen işlem vote verisi okunuyor
+237.		else döngüsünden çık
+238.
+239.	     while döngüsünden çık
+240.	while döngüsünden çık
+241.
+243.   return ile sıfır döndür
+244
+245. int main fonksiyonundan çık
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

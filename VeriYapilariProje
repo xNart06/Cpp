@@ -1,0 +1,231 @@
+#include <iostream>
+using namespace std;
+
+/* MainStruct içerisindeki tüm fonksiyonlar için yazımış bir açıklamadır. Fonksiyonların sadece değişkenleri değiştiğinden ve mantığı tamamen aynı olduğundan,
+    * toplu bir tanımla yapılması uygun görülmüştür.
+
+
+ * ElemanEkleMevcut -> -> Mevcut olan tüm elemanları kuyruk yapısına eklemek için ElemanEkleMevcut fonksiyonunu oluşturduk. Bu fonksiyon liste başı NULL iken ilk elemanı ekliyor.
+     * Eğer liste başı NULL değilse son elemanı en son sıraya ekleyerek işlemine devam ediyor.
+
+ * Karsilastir ve KarsilastirEth -> -> Projemizin en can alıcı ve göz bebeğimiz olan Karsilastir fonksiyonumuz. Kuyruğu tam anlamıyla dönmesi için
+     * *btc (*eth)' ye kuyruğun en başını veriyoruz.
+     * Main fonksiyonda elemanlarımızı alırken for döngüsünü tersten yazdığımız için aslında ilk ayımız kasım ayı oluyor. *ptr için de head->next atıyoruz
+     * çünkü kasım ayını karşılaştırırken bir sonraki ay değerinden karşılaştırmasını istiyoruz. İç içe iki while döngüsü kullandık. Bunun çalışma sistemi ise
+     * şu şekilde; İlk while döngümüzde karşılaştırılacak ayın fiyat değişkeni sabit olarak tutuluyor. İkinci while döngümüzde ise karşılaştırdığımız aydan
+     * sonraki tüm ayları teker teker dönerek if içindeki koşulumuza uygun karşılaştırmalarını yapıyoruz.
+
+ * ElemanListele ve ElemanListeleEth -> -> Tüm elemanlarımızı listeleyen nacizane güzel bir fonksiyonumuz.
+
+ * TersCevir -> -> Ay değerlerimizi tersten aldık fakat kullanıcıya bunu gösterirken düz bir şekilde göstermemiz gerekiyor. Bunu yapmak için de bir ters çevirme fonksiyonu yazdık.
+     * Bu fonksiyon tamamen görsele hitap eden bir fonksiyon.
+*/
+struct Bitcoin {
+    int fiyat;
+    string ay;
+    Bitcoin *next;
+};
+struct Etherium {
+    int fiyatEth;
+    string ayEth;
+    Etherium *next;
+};
+/*Bitcoin ve Etherium structları oluşturuldu. Her coinin fiyatını ve ay değerini tutacaklar.
+     * Ayriyeten kendi tiplerinde next pointeri tutacaklar ki elemanlara sırasıyla ulaşabilelim.
+*/
+struct MainStruct{
+    Bitcoin *head;
+    Bitcoin *tail;
+    Etherium *bas;
+    Etherium *kuyruk;
+    MainStruct(){head=NULL; tail=NULL; bas=NULL; kuyruk=NULL;}
+    /* Statik olarak aylarımızı ve fiyatlarımızı çekeceğimiz için dizi halinde verilerimizi tuttuk. */
+
+    string aylar[250] = {"Ocak","Subat", "Mart", "Nisan", "Mayis", "Haziran", "Temmuz", "Agustos", "Eylul", "Ekim", "Kasim"};
+    int fiyatlar[12] = {  58824,37654,38729, 38728, 30033, 22097, 20323, 24320, 20177, 19206, 20826};
+    int fiyatlarEth[12] = {  3893,3267,2976, 3041, 1950, 1237, 1725, 1879, 1554, 1285, 1614};
+    void ElemanEkleMevcut(Bitcoin *ListeElemanlari){
+        if (head == NULL) {
+            head = ListeElemanlari;
+        } else {
+            tail->next = ListeElemanlari;
+        }
+        tail = ListeElemanlari;
+    }
+    void Karsilastir(Bitcoin *btc){
+        btc = head;
+        Bitcoin *ptr = head->next;
+        int sayac = 0;
+        while (btc->next != NULL){
+            while (ptr != NULL){
+                if (btc->fiyat >= ptr->fiyat && btc->fiyat >= ptr->next->fiyat){
+                    sayac = sayac + 2;
+                }
+                ptr = ptr->next;
+                cout<<btc->ay<<"'dan onceki aylar icin ardisik ay sayisi: "<<sayac<<endl;
+                sayac = 0;
+                btc = btc->next;
+            }
+        }
+    }
+    void ElemanListele(){
+        Bitcoin *btc = head;
+        cout<<"\n--------2022 YILININN BITCOIN LISTESI-------\n"<<endl;
+        while(btc->next!=NULL){
+            cout<<"Bir bitcoin "<<btc->ay<<" ayında: "<<btc->fiyat<<"$ \n";
+            btc=btc->next;
+        }
+    }
+    void TersCevir()
+    {
+        Bitcoin *current = head;
+        Bitcoin *prev = NULL, *next = NULL;
+
+        while (current != NULL) {
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
+    }
+    void KarsilastirEth(){
+        Etherium *eth = bas;
+        Etherium *ptr = eth->next;
+        int sayac = 0;
+        while (eth->next != NULL){
+            while (ptr != NULL){
+                if (eth->fiyatEth >= ptr->fiyatEth && eth->fiyatEth >= ptr->next->fiyatEth){
+                    sayac = sayac + 2;
+                }
+                ptr = ptr->next;
+                cout<<eth->ayEth<<"'dan onceki aylar icin ardisik ay sayisi: "<<sayac<<endl;
+                sayac = 0;
+                eth = eth->next;
+            }
+        }
+    }
+    void ElemanEkleMevcut(Etherium *ListeElemanlari){
+        if (bas == NULL) {
+            bas = ListeElemanlari;
+        } else {
+            kuyruk->next = ListeElemanlari;
+        }
+        kuyruk = ListeElemanlari;
+    }
+    void ElemanListeleEth(){
+        Etherium *eth = bas;
+        cout<<"\n--------2022 YILININN ETHERIUM LISTESI-------\n"<<endl;
+        while(eth->next!=NULL){
+            cout<<"Bir etherium "<<eth->ayEth<<" ayında: "<<eth->fiyatEth<<"$ \n";
+            eth=eth->next;
+        }
+    }
+};
+int main() {
+    MainStruct ms;
+    Bitcoin *btc;
+    Etherium *eth;
+    int vote, repeat = 1, vote_in;
+    string ay;
+    ms.TersCevir();
+    while (repeat == 1) { // Menüyü kullanıcı çıkış yapana kadar göstermesi için.
+        int repeat_in = 1;
+        cout<< "********** HOSGELDINIZ **********\n";
+        cout<<"Lutfen islem yapmak istediginiz coini secin\n";
+        cout<<" [1] - Bitcoin\n";
+        cout<<" [2] - Etherium\n";
+        cout<<" [3] - Cikis yap\n";
+        cout<<"Seciminiz: ";
+        cin >> vote;
+        while (repeat_in == 1) { // İç menüyü kullanıcı çıkış yapana kadar göstermesi için.
+            if (vote == 1) { // Kullanıcı seçimi
+                cout<< "\n********* BITCOIN **********\n\n";
+                cout<<"Yilin ilk 11 ayinin fiyatini listele [1]\n";
+                cout<<"Fiyatlari istedigin aya gore kiyasla [2]\n";
+                cout<<"Ust menuye git [3]\n";
+                cout<<"Seciminiz: ";
+                cin >> vote_in;
+                if (vote_in == 1) { // Kullanıcı iç menü seçimi
+                    if(ms.head == NULL){ // Eğer kuyruk yapısı boş değilse tüm elemanları kuyruk yapısına eklemeye yarar.
+                        for(int j = 11; j>=2; j--) { // Dizideki tüm elemanları kuyruk yapısına ekler.
+                            btc = new Bitcoin;
+                            btc->ay = ms.aylar[j];
+                            btc->fiyat = ms.fiyatlar[j];
+                            ms.ElemanEkleMevcut(btc);
+                            btc->next = btc;
+                            bitis = clock();
+                        }
+                    }
+                    btc->next = NULL;
+                    ms.TersCevir(); // Kullanıcının ayları sıralı görmesini sağlar.
+                    ms.ElemanListele(); // Kuyruktaki elemanları listeler.
+                }  else if (vote_in == 2) { // Kullanıcı iç menü seçimi
+                    for (int j = 10; j >= 2; j--) { // Dizideki tüm elemanları kuyruk yapısına ekler.
+                        btc = new Bitcoin;
+                        btc->ay = ms.aylar[j];
+                        btc->fiyat = ms.fiyatlar[j];
+                        ms.ElemanEkleMevcut(btc);
+                        btc->next = btc;
+                        bitis = clock();
+                    }
+                    btc->next = NULL;
+                    ms.Karsilastir(btc); // Kuyruktaki verileri karşılaştırır.
+                } else if (vote_in == 3) { // Kullanıcı iç menü seçimi
+                    system("cls");
+                    bitis = clock();
+                    repeat_in = 0; // ilk while döngüsünden çıkıp dışarıdaki
+                } else { // Kullanici yanlış seçim yaparsa tekrar seçim yapması istenecek
+                    cout << "Yanlis secim yaptiniz!! Tekrar secim yapin: ";
+                    cin >> vote_in;
+                }
+            } else if (vote == 2) { // Kullanıcı seçimi
+                cout<< "\n********* ETHERIUM **********\n\n";
+                cout<<"Yilin ilk 11 ayinin fiyatini listele [1]\n";
+                cout<<"Fiyatlari istedigin aya gore kiyasla [2]\n";
+                cout<<"Ust menuye git [3]\n";
+                cout<<"Seciminiz: ";
+                cin>>vote_in;
+                if (vote_in == 1) { // Kullanıcı iç menü seçimi
+                    if (ms.bas == NULL) { // Eğer kuyruk yapısı boş değilse tüm elemanları kuyruk yapısına eklemeye yarar.
+                        for (int j = 10; j >= 2; j--) { // Dizideki tüm elemanları kuyruk yapısına ekler.
+                            eth = new Etherium;
+                            eth->ayEth = ms.aylar[j];
+                            eth->fiyatEth = ms.fiyatlarEth[j];
+                            ms.ElemanEkleMevcut(eth);
+                            eth->next = eth;
+                        }
+                    }
+                    eth->next = NULL;
+                    ms.TersCevir(); // Kullanıcının ayları sıralı görmesini sağlar.
+                    ms.ElemanListeleEth(); // Eth kuyruğundaki ayları listeler.
+                } else if (vote_in == 2) { // Kullanıcı iç menü seçimi
+                    if(ms.bas == NULL) {
+                        for (int j = 10; j >= 2; j--) { // Dizideki tüm elemanları kuyruk yapısına ekler.
+                            eth = new Etherium;
+                            eth->ayEth = ms.aylar[j];
+                            eth->fiyatEth = ms.fiyatlar[j];
+                            ms.ElemanEkleMevcut(eth);
+                            eth->next = eth;
+                        }
+                    }
+                    eth->next = NULL;
+                    ms.KarsilastirEth(); // Eth kuyruğundaki tüm elemanları karşılaştır.
+                } else if (vote_in == 3) { // Kullanıcı iç menü seçimi
+                    system("cls");
+                    repeat_in = 0;
+                } else { // İç menü seçimi yanlış yapılırsa tekrar seçim yapılması istenecek.
+                    cout << "Yanlis secim yaptiniz!! Tekrar secim yapin: ";
+                    cin >> vote_in;
+                }
+            } else if(vote == 3){ // Kullanıcı seçimi
+                repeat=0; repeat_in = 0;
+                cout<<"IYI GUNLER DİLERİZ :)";
+            } else { // Kullanıcı yanlış seçim yaparsa tekrar seçim yapması istenecek.
+                cout << "Yanlis secim yaptiniz!! Tekrar secim yapin: ";
+                cin >> vote;
+            }
+        }
+    }
+    return 0;
+}
